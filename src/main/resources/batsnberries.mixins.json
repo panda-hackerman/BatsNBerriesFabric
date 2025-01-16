@@ -1,0 +1,15 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "dev.michaud.batsnberries.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "MixinBerries",
+    "MixinBat"
+  ],
+  "client": [
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

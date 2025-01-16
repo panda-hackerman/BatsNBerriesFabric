@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "id": "batsnberries",
+  "version": "${version}",
+  "name": "Bats N Berries",
+  "description": "Makes glow berries useful",
+  "authors": [
+    "NrdyPnda"
+  ],
+  "contact": {},
+  "license": "",
+  "icon": "assets/batsnberries/icon.png",
+  "environment": "server",
+  "entrypoints": {
+    "main": [
+      "dev.michaud.batsnberries.BatsNBerriesMod"
+    ]
+  },
+  "mixins": [
+    "batsnberries.mixins.json"
+  ],
+  "depends": {
+    "java": ">=21",
+    "fabricloader": ">=${loader_version}",
+    "fabric": "*",
+    "minecraft": "${minecraft_version}"
+  }
+}
