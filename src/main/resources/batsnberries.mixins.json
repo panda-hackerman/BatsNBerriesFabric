@@ -4,7 +4,6 @@
   "package": "dev.michaud.batsnberries.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
-    "MixinBerries",
     "MixinBat"
   ],
   "client": [

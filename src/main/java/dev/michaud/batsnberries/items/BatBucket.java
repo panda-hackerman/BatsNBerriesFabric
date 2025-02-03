@@ -2,7 +2,12 @@ package dev.michaud.batsnberries.items;
 
 import dev.michaud.batsnberries.BatsNBerriesMod;
 import eu.pb4.polymer.core.api.item.PolymerItem;
+import eu.pb4.polymer.core.api.utils.PolymerClientDecoded;
+import eu.pb4.polymer.core.api.utils.PolymerKeepModel;
+import eu.pb4.polymer.networking.api.PolymerNetworking;
+import eu.pb4.polymer.networking.api.server.PolymerServerNetworking;
 import eu.pb4.polymer.resourcepack.api.PolymerResourcePackUtils;
+import java.util.Objects;
 import net.minecraft.advancement.criterion.Criteria;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.EntityType;
@@ -118,7 +123,13 @@ public class BatBucket extends EntityBucketItem implements PolymerItem {
 
   @Override
   public @Nullable Identifier getPolymerItemModel(ItemStack stack, PacketContext context) {
-    if (PolymerResourcePackUtils.hasMainPack(context)) {
+
+//    final Identifier PACKET_ID = /* ? */;
+//    final ServerPlayerEntity player = Objects.requireNonNull(context.getPlayer());
+//    final boolean hasClientMod = PolymerServerNetworking.getSupportedVersion(player.networkHandler, PACKET_ID) > 0;
+    final boolean hasClientMod = false;
+
+    if (PolymerResourcePackUtils.hasMainPack(context) || hasClientMod) {
       return Identifier.of("greenpanda", "bat_bucket");
     } else {
       return Identifier.of("minecraft", "bat_spawn_egg");
