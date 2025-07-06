@@ -1,11 +1,13 @@
 package dev.michaud.batsnberries.items;
 
+import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.minecraft.block.DispenserBlock;
 import net.minecraft.block.dispenser.ItemDispenserBehavior;
 import net.minecraft.component.DataComponentTypes;
 import net.minecraft.component.type.NbtComponent;
 import net.minecraft.item.FluidModificationItem;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemGroups;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.registry.Registries;
@@ -23,6 +25,11 @@ public class ModItems {
           .registryKey(BatBucket.KEY)));
 
   public static void registerModItems() {
+
+    // Add to creative menu
+    ItemGroupEvents.modifyEntriesEvent(ItemGroups.TOOLS).register((itemGroup) -> {
+      itemGroup.addAfter(Items.AXOLOTL_BUCKET, BAT_BUCKET);
+    });
 
     // Make dispenser behave properly
     DispenserBlock.registerBehavior(ModItems.BAT_BUCKET, new ItemDispenserBehavior() {
