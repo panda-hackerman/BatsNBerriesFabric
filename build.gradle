@@ -1,5 +1,5 @@
 plugins {
-    id 'fabric-loom' version '1.9-SNAPSHOT'
+    id 'fabric-loom' version '1.11-SNAPSHOT'
     id 'maven-publish'
 }
 
@@ -25,10 +25,11 @@ dependencies {
     modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
     // Polymer :3
-    def polymer_version = '0.11.3+1.21.4'
+    def polymer_version = '0.13.4+1.21.7'
     modImplementation include("eu.pb4:polymer-core:${polymer_version}")
     modImplementation include("eu.pb4:polymer-resource-pack:${polymer_version}")
-    modImplementation include("eu.pb4:polymer-networking:${polymer_version}")
+
+    modRuntimeOnly "eu.pb4:polymer-autohost:${polymer_version}"
 }
 
 processResources {

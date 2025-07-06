@@ -18,9 +18,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUsage;
 import net.minecraft.item.Items;
 import net.minecraft.nbt.NbtCompound;
-import net.minecraft.nbt.NbtElement;
 import net.minecraft.registry.tag.BlockTags;
-import net.minecraft.registry.tag.GameEventTags;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundEvent;
@@ -34,7 +32,6 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.BlockStateRaycastContext;
 import net.minecraft.world.World;
-import net.minecraft.world.event.GameEvent;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
@@ -95,23 +92,23 @@ public abstract class MixinBat extends AmbientEntity implements Bucketable {
 
     NbtComponent.set(DataComponentTypes.BUCKET_ENTITY_DATA, stack, nbtCompound -> {
       if (isAiDisabled()) {
-        nbtCompound.putBoolean("NoAI", isAiDisabled());
+        nbtCompound.putBoolean("NoAI", true);
       }
 
       if (isSilent()) {
-        nbtCompound.putBoolean("Silent", isSilent());
+        nbtCompound.putBoolean("Silent", true);
       }
 
       if (hasNoGravity()) {
-        nbtCompound.putBoolean("NoGravity", hasNoGravity());
+        nbtCompound.putBoolean("NoGravity", true);
       }
 
       if (isGlowingLocal()) {
-        nbtCompound.putBoolean("Glowing", isGlowingLocal());
+        nbtCompound.putBoolean("Glowing", true);
       }
 
       if (isInvulnerable()) {
-        nbtCompound.putBoolean("Invulnerable", isInvulnerable());
+        nbtCompound.putBoolean("Invulnerable", true);
       }
 
       nbtCompound.putFloat("Health", getHealth());
@@ -120,30 +117,11 @@ public abstract class MixinBat extends AmbientEntity implements Bucketable {
 
   @Override
   public void copyDataFromNbt(NbtCompound nbt) {
-    if (nbt.contains("NoAI")) {
-      setAiDisabled(nbt.getBoolean("NoAI"));
-    }
-
-    if (nbt.contains("Silent")) {
-      setSilent(nbt.getBoolean("Silent"));
-    }
-
-    if (nbt.contains("NoGravity")) {
-      setNoGravity(nbt.getBoolean("NoGravity"));
-    }
-
-    if (nbt.contains("Glowing")) {
-      setGlowing(nbt.getBoolean("Glowing"));
-    }
-
-    if (nbt.contains("Invulnerable")) {
-      setInvulnerable(nbt.getBoolean("Invulnerable"));
-    }
-
-    if (nbt.contains("Health", NbtElement.NUMBER_TYPE)) {
-      setHealth(nbt.getFloat("Health"));
-    }
-
+    nbt.getBoolean("NoAI").ifPresent(this::setAiDisabled);
+    nbt.getBoolean("Silent").ifPresent(this::setSilent);
+    nbt.getBoolean("NoGravity").ifPresent(this::setNoGravity);
+    nbt.getBoolean("Invulnerable").ifPresent(this::setInvulnerable);
+    nbt.getFloat("Health").ifPresent(this::setHealth);
     setRoosting(false);
   }
 

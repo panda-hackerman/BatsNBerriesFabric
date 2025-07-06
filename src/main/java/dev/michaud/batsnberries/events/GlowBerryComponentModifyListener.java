@@ -8,7 +8,7 @@ import net.minecraft.component.type.FoodComponent;
 import net.minecraft.component.type.FoodComponents;
 import net.minecraft.item.Items;
 
-/* Makes glow berries always edible and give the glowing effect */
+/** Makes glow berries always edible and give the glowing effect */
 public class GlowBerryComponentModifyListener {
 
   public static void initializeCallbacks() {

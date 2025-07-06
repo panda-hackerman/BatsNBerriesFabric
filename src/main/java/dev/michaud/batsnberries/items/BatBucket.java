@@ -2,15 +2,11 @@ package dev.michaud.batsnberries.items;
 
 import dev.michaud.batsnberries.BatsNBerriesMod;
 import eu.pb4.polymer.core.api.item.PolymerItem;
-import eu.pb4.polymer.core.api.utils.PolymerClientDecoded;
-import eu.pb4.polymer.core.api.utils.PolymerKeepModel;
-import eu.pb4.polymer.networking.api.PolymerNetworking;
-import eu.pb4.polymer.networking.api.server.PolymerServerNetworking;
 import eu.pb4.polymer.resourcepack.api.PolymerResourcePackUtils;
-import java.util.Objects;
 import net.minecraft.advancement.criterion.Criteria;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.item.EntityBucketItem;
@@ -75,7 +71,7 @@ public class BatBucket extends EntityBucketItem implements PolymerItem {
     Direction direction = blockHitResult.getSide();
     BlockPos blockPos2 = blockPos.offset(direction);
 
-    if (!world.canPlayerModifyAt(player, blockPos) || !player.canPlaceOn(blockPos2, direction,
+    if (!world.canEntityModifyAt(player, blockPos) || !player.canPlaceOn(blockPos2, direction,
         itemStack)) {
       return ActionResult.FAIL;
     }
@@ -101,7 +97,7 @@ public class BatBucket extends EntityBucketItem implements PolymerItem {
   }
 
   @Override
-  public boolean placeFluid(@Nullable PlayerEntity player, World world, BlockPos pos,
+  public boolean placeFluid(@Nullable LivingEntity player, World world, BlockPos pos,
       @Nullable BlockHitResult hitResult) {
 
     BlockState blockState = world.getBlockState(pos);
