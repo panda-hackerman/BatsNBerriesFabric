@@ -1,4 +1,4 @@
-package dev.michaud.batsnberries.events;
+package dev.michaud.batsnberries.events.handlers;
 
 import dev.michaud.batsnberries.effects.GlowBerryConsumeEffect;
 import net.fabricmc.fabric.api.item.v1.DefaultItemComponentEvents;
@@ -9,7 +9,7 @@ import net.minecraft.component.type.FoodComponents;
 import net.minecraft.item.Items;
 
 /** Makes glow berries always edible and give the glowing effect */
-public class GlowBerryComponentModifyListener {
+public class GlowBerryComponentModifyHandler {
 
   public static void initializeCallbacks() {
 

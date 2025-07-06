@@ -1,6 +1,7 @@
 package dev.michaud.batsnberries;
 
-import dev.michaud.batsnberries.events.GlowBerryComponentModifyListener;
+import dev.michaud.batsnberries.events.handlers.AnimalEatGlowBerryHandler;
+import dev.michaud.batsnberries.events.handlers.GlowBerryComponentModifyHandler;
 import dev.michaud.batsnberries.gamerules.ModGameRules;
 import dev.michaud.batsnberries.items.ModItems;
 import eu.pb4.polymer.resourcepack.api.PolymerResourcePackUtils;
@@ -15,7 +16,10 @@ public class BatsNBerriesMod implements ModInitializer {
 
   @Override
   public void onInitialize() {
-    GlowBerryComponentModifyListener.initializeCallbacks(); /* Change glow berry components */
+
+    GlowBerryComponentModifyHandler.initializeCallbacks(); /* Change glow berry components */
+    AnimalEatGlowBerryHandler.initializeCallbacks();
+
     PolymerResourcePackUtils.addModAssets(MOD_ID);
     ModItems.registerModItems();
     ModGameRules.registerGameRules();
